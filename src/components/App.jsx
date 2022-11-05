@@ -1,16 +1,20 @@
+import { Navigate, Route, Routes } from 'react-router-dom';
+
+import { HeaderAll } from './Header/Header';
+import { MovieList } from '../pages/MovieList/MovieList';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <Routes>
+      <Route path="/" element={<HeaderAll />}>
+        <Route index element={<MovieList />} />
+        {/* <Route path={muvies} element={<MuvieSearch /> } /> */}
+        {/* <Route path="muvies:movieId" element={<MoviesDetails />}>
+          <Route path="cast" element={<MoviesActor />} />
+          <Route path="reviews" element={<MoviesReviews />} />
+        </Route> */}
+        <Route path="*" element={<Navigate to="/" />} />
+      </Route>
+    </Routes>
   );
 };
