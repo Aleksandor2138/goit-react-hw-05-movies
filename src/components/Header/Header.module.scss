@@ -1,5 +1,11 @@
 .header{
-    background-image: url(../../img/bg-desktop.jpg);
+    background-image:linear-gradient(
+        rgba(47, 48, 58, 0.4),
+        rgba(47, 48, 58, 0.4)
+    ), url(../../img/bg-desktop.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     height: 100px;
     display: flex;
     justify-content: center;

@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react';
 import { SearchTrend } from '../../components/SearchAPI/SearchAPI';
 import { MovieItem } from './MovieItem';
 import MovieListSCSS from './MovieList.module.scss';
+import { Loader } from 'components/Loader/Loader';
 
-export const MovieList = ({list}) => {
+const MovieList = ({list}) => {
   const [movies, setMovies] = useState([]);
   const [title, setTitle] = useState(true);
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     if (list) {
@@ -18,16 +20,18 @@ export const MovieList = ({list}) => {
   }, [list]);
 
   const serverAPI = async () => {
+    setLoader(true);
     const data = await SearchTrend();
     const results = await data.results;
     console.log(results);
     setMovies(results);
-    return;
+    return setLoader(false);
   };
 
   return (
     <section>
       {title && <h2 className={MovieListSCSS.text}>Trending today</h2>}
+      {loader && <Loader />}
       <ul className={MovieListSCSS.list}>
         {movies.map(movie => (
           <MovieItem key={movie.id} movie={movie}></MovieItem>
@@ -39,3 +43,4 @@ export const MovieList = ({list}) => {
 MovieList.propTypes = {
   list: PropTypes.array,
 };
+export default MovieList;
