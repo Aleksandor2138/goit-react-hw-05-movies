@@ -12,7 +12,7 @@ const PageNotFound = lazy(() => import('../pages/PageNotFound/PageNotFound'));
 export const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<HeaderAll />}>
+      <Route path="/" exact element={<HeaderAll />}>
         <Route index element={<MovieList />} />
         <Route path="movies" element={<MovieSearch />} />
         <Route path="movies/:id" element={<MoviesDetails />}>
